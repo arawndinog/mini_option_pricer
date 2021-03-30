@@ -1,0 +1,95 @@
+<html>
+    <head>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="/static/styles.css">
+        <script type="text/javascript" src="/static/scripts.js"></script>
+    </head>
+    <body style="background:rgb(237, 236, 243); font-family: 'Open Sans', sans-serif;">
+        <div class="input-panel">
+            Spot price of asset <span style="font-weight:bold;">S(0)</span>
+            <input type="number" id="spotprice" name="spotprice" value=0><br/>
+
+            Strike price <span style="font-weight:bold;">K</span>
+            <input type="number" id="strikeprice" name="strikeprice" value=0><br/>
+
+            Time to maturity (in years) <span style="font-weight:bold;">T</span>
+            <input type="number" id="maturity" name="maturity" value=0><br/>
+
+            Volatility <span style="font-weight:bold;">σ</span>
+            <input type="number" id="volatility" name="volatility" value=0><br/>
+
+            Risk-free interest rate <span style="font-weight:bold;">r</span>
+            <input type="number" id="interestrate" name="interestrate" value=0><br/>
+
+            Repo rate <span style="font-weight:bold;">q</span>
+            <input type="number" id="reporate" name="reporate" value=0><br/>
+
+            Option premium
+            <input type="number" id="optionpremium" name="optionpremium" value=0><br/>
+            <div class="masthead">
+                COMP7405 Group 2 - Assignment 3<br/>
+                Lee Cheuk Him &nbsp;&nbsp; Tang Tun Yu &nbsp;&nbsp; Wong, Adrian
+            </div>
+        </div>
+        <div class="output-container">
+            <div class="output-panel" id="european_call"> 
+                <span class="title">European Call Option</span>
+                <div class="result"></div>
+            </div>
+            <div class="output-panel" id="european_put"> 
+                <span class="title">European Put Option</span>
+                <div class="result"></div>
+            </div>
+            <div class="output-panel" id="impliedvol_call"> 
+                <span class="title">Implied Volatility Call Option</span>
+                <div class="result"></div>
+            </div>
+            <div class="output-panel" id="impliedvol_put"> 
+                <span class="title">Implied Volatility Put Option</span>
+                <div class="result"></div>
+            </div>
+            <div class="output-panel" id="american_call"> 
+                <span class="title">American Call Option</span>
+                <div class="result"></div>
+            </div>
+            <div class="output-panel" id="american_put"> 
+                <span class="title">American Put Option</span>
+                <div class="result"></div>
+            </div>
+            <div class="output-panel" id="geo_asian_call"> 
+                <span class="title">Geometric Asian Call Option</span>
+                <div class="result"></div>
+            </div>
+            <div class="output-panel" id="geo_asian_put"> 
+                <span class="title">Geometric Asian Put Option</span>
+                <div class="result"></div>
+            </div>
+            <div class="output-panel" id="arithm_asian_call"> 
+                <span class="title">Arithmetic Asian Call Option</span>
+                <div class="result"></div>
+            </div>
+            <div class="output-panel" id="arithm_asian_put"> 
+                <span class="title">Arithmetic Asian Put Option</span>
+                <div class="result"></div>
+            </div>
+            <div class="output-panel" id="geo_basket_call"> 
+                <span class="title">Geometric Basket Call Option</span>
+                <div class="result"></div>
+            </div>
+            <div class="output-panel" id="geo_basket_put"> 
+                <span class="title">Geometric Basket Put Option</span>
+                <div class="result"></div>
+            </div>
+            <div class="output-panel" id="arithm_basket_call"> 
+                <span class="title">Arithmetic Basket Call Option</span>
+                <div class="result"></div>
+            </div>
+            <div class="output-panel" id="arithm_basket_put"> 
+                <span class="title">Arithmetic Basket Put Option</span>
+                <div class="result"></div>
+            </div>
+        </div>
+    </body>
+</html>
