@@ -7,7 +7,7 @@ $(document).ready(function(){
         var maturity = $("#maturity").val();
         var strikeprice = $("#strikeprice").val();
         $.ajax({
-            url: "/calculate_option_value",
+            url: "/calculate_european_option_value",
             type: "get",
             data: {
                 spotprice: spotprice,
@@ -31,7 +31,7 @@ $(document).ready(function(){
         var maturity = $("#maturity").val();
         var strikeprice = $("#strikeprice").val();
         $.ajax({
-            url: "/calculate_option_value",
+            url: "/calculate_european_option_value",
             type: "get",
             data: {
                 spotprice: spotprice,
