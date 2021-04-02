@@ -1,6 +1,7 @@
 import numpy as np
 from scipy.stats import norm
 import math
+from multiprocessing import Process, Manager
 
 class AsianOptionCal:
     def __init__(self,sigma,N,S,K,T,r,M,option):
@@ -52,7 +53,35 @@ class AsianOptionCal:
             arithPayoffArray.append(max(spathMean - self.K, 0))
             
         return arithPayoffArray
-    
+
+    def arithmetricPayoff_process(self, i, arithPayoffArray_main, sub_M):
+        arithPayoffArray = []
+        np.random.seed(i)
+        for i in range(sub_M):
+            spathArray = self.randomPriceSample()
+            spathMean = self.arithmeticMath(spathArray)
+            arithPayoffArray.append(max(spathMean - self.K, 0))
+
+        arithPayoffArray_main += arithPayoffArray
+
+    def arithmetricPayoff_mp(self):
+        manager = Manager()
+        arithPayoffArray_main = manager.list()
+        n_process = 4
+        process_list = []
+        for i in range(n_process-1):
+            process = Process(target=self.arithmetricPayoff_process, args=(i, arithPayoffArray_main, self.M//n_process))
+            process.start()
+            process_list.append(process)
+        process = Process(target=self.arithmetricPayoff_process, args=(n_process, arithPayoffArray_main, self.M-(n_process-1)*self.M//n_process))
+        process.start()
+        process_list.append(process)
+        for p in process_list:
+            p.join()
+            
+        arithPayoffArray = list(arithPayoffArray_main)
+        return arithPayoffArray
+
     def geometricPayoff(self):
         np.random.seed(3)
         geoPayoffArray = []
