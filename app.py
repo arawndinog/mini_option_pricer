@@ -43,10 +43,20 @@ def calculate_asian_option_value():
     K = float(request.args.get('strikeprice'))
     option_type = request.args.get('optiontype')
 
-    N = float(request.args.get('geoaverage'))
-    M = float(request.args.get('montecarlopath'))
+    asian_type = request.args.get('asiantype')
+    N = int(request.args.get('geoaverage'))
+    M = int(request.args.get('montecarlopath'))
 
-    result = black_scholes.option_value(S, K, T, sigma, r, q, option_type)
+    asian_option_model = asian_option.AsianOptionCal(sigma=sigma,N=N,S=S,K=K,T=T,r=r,M=M,option=option_type)
+    if asian_type == "geo_bs":
+        result = asian_option_model.geometricClosedForm()
+    elif  asian_type == "geo_mc":
+        result = asian_option_model.geometricStandardMC()
+    elif asian_type == "arithm_mc":
+        result = asian_option_model.arithmetricStandardMC()
+    elif asian_type == "arithm_cv":
+        result = asian_option_model.arithmetricStandardMCWithCV()
+
     return jsonify({"result":result})
 
 if __name__ == "__main__":

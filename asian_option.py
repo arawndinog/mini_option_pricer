@@ -25,10 +25,10 @@ class AsianOptionCal:
         return np.exp(np.mean(np.log(s)))
     
     def geometricClosedForm(self):
-        if self.option == "Call":
+        if self.option == "call":
             callV = np.exp(-self.r*self.T) * (self.S*np.exp(self.muhat*self.T)*norm.cdf(self.d1hat) - self.K*norm.cdf(self.d2hat))
             return callV
-        if self.option == "Put":
+        if self.option == "put":
             putV = np.exp(-self.r*self.T) * (self.K*norm.cdf(-self.d2hat) - self.S*np.exp(self.muhat*self.T)*norm.cdf(-self.d1hat))
             return putV
     

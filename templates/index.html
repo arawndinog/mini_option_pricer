@@ -28,6 +28,12 @@
 
             Option premium
             <input type="number" id="optionpremium" name="optionpremium" value=0 step="0.01"><br/>
+
+            Geometric average <span style="font-weight:bold;">N</span>
+            <input type="number" id="geoaverage" name="geoaverage" value=0 step="0.01"><br/>
+
+            Monte Carlo paths <span style="font-weight:bold;">M</span>
+            <input type="number" id="montecarlopath" name="montecarlopath" value=0 step="0.01"><br/>
             <div class="masthead">
                 COMP7405 Group 2 - Assignment 3<br/>
                 Lee Cheuk Him &nbsp;&nbsp; Tang Tun Yu &nbsp;&nbsp; Wong, Adrian
@@ -58,20 +64,44 @@
                 <span class="title">American Put Option</span>
                 <div class="result"></div>
             </div>
-            <div class="output-panel" id="geo_asian_call"> 
-                <span class="title">Geometric Asian Call Option</span>
+            <div class="output-panel" id="geo_asian_closed_form_call"> 
+                <span class="title">Geometric Asian Call Option</span><br/>
+                from Closed-Form Fomula
                 <div class="result"></div>
             </div>
-            <div class="output-panel" id="geo_asian_put"> 
-                <span class="title">Geometric Asian Put Option</span>
+            <div class="output-panel" id="geo_asian_closed_form_put"> 
+                <span class="title">Geometric Asian Put Option</span><br/>
+                from Closed-Form Fomula
                 <div class="result"></div>
             </div>
-            <div class="output-panel" id="arithm_asian_call"> 
-                <span class="title">Arithmetic Asian Call Option</span>
+            <div class="output-panel" id="geo_asian_mc_call"> 
+                <span class="title">Geometric Asian Call Option</span><br/>
+                from standard Monte Carlo
                 <div class="result"></div>
             </div>
-            <div class="output-panel" id="arithm_asian_put"> 
-                <span class="title">Arithmetic Asian Put Option</span>
+            <div class="output-panel" id="geo_asian_mc_put"> 
+                <span class="title">Geometric Asian Put Option</span><br/>
+                from standard Monte Carlo
+                <div class="result"></div>
+            </div>
+            <div class="output-panel" id="arithm_asian_mc_call"> 
+                <span class="title">Arithmetic Asian Call Option</span><br/>
+                from standard Monte Carlo
+                <div class="result"></div>
+            </div>
+            <div class="output-panel" id="arithm_asian_mc_put"> 
+                <span class="title">Arithmetic Asian Put Option</span><br/>
+                from standard Monte Carlo
+                <div class="result"></div>
+            </div>
+            <div class="output-panel" id="arithm_asian_cv_call"> 
+                <span class="title">Arithmetic Asian Call Option</span><br/>
+                from MC with Control Variate
+                <div class="result"></div>
+            </div>
+            <div class="output-panel" id="arithm_asian_cv_put"> 
+                <span class="title">Arithmetic Asian Put Option</span><br/>
+                from MC with Control Variate
                 <div class="result"></div>
             </div>
             <div class="output-panel" id="geo_basket_call"> 
