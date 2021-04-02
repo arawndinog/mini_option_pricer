@@ -44,7 +44,7 @@ def calculate_asian_option_value():
     option_type = request.args.get('optiontype')
 
     asian_type = request.args.get('asiantype')
-    N = int(request.args.get('geoaverage'))
+    N = int(request.args.get('observegeo'))
     M = int(request.args.get('montecarlopath'))
 
     asian_option_model = asian_option.AsianOptionCal(sigma=sigma,N=N,S=S,K=K,T=T,r=r,M=M,option=option_type)

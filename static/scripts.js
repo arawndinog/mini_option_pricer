@@ -6,7 +6,7 @@ $(document).ready(function(){
     var maturity;
     var strikeprice;
     var optionpremium;
-    var geoaverage;
+    var observegeo;
     var montecarlopath;
     $('.output-panel').click(function() {
         spotprice = $("#spotprice").val();
@@ -16,7 +16,7 @@ $(document).ready(function(){
         maturity = $("#maturity").val();
         strikeprice = $("#strikeprice").val();
         optionpremium = $("#optionpremium").val();
-        geoaverage = $("#geoaverage").val();
+        observegeo = $("#observegeo").val();
         montecarlopath = $("#montecarlopath").val();
     });
     // European options
@@ -106,7 +106,7 @@ $(document).ready(function(){
                 interestrate: interestrate,
                 maturity: maturity,
                 strikeprice: strikeprice,
-                geoaverage: geoaverage,
+                observegeo: observegeo,
                 montecarlopath: montecarlopath,
                 asiantype: "geo_bs",
                 optiontype: "call"
@@ -126,7 +126,7 @@ $(document).ready(function(){
                 interestrate: interestrate,
                 maturity: maturity,
                 strikeprice: strikeprice,
-                geoaverage: geoaverage,
+                observegeo: observegeo,
                 montecarlopath: montecarlopath,
                 asiantype: "geo_bs",
                 optiontype: "put"
@@ -146,7 +146,7 @@ $(document).ready(function(){
                 interestrate: interestrate,
                 maturity: maturity,
                 strikeprice: strikeprice,
-                geoaverage: geoaverage,
+                observegeo: observegeo,
                 montecarlopath: montecarlopath,
                 asiantype: "geo_mc",
                 optiontype: "call"
@@ -166,7 +166,7 @@ $(document).ready(function(){
                 interestrate: interestrate,
                 maturity: maturity,
                 strikeprice: strikeprice,
-                geoaverage: geoaverage,
+                observegeo: observegeo,
                 montecarlopath: montecarlopath,
                 asiantype: "geo_mc",
                 optiontype: "put"
@@ -186,7 +186,7 @@ $(document).ready(function(){
                 interestrate: interestrate,
                 maturity: maturity,
                 strikeprice: strikeprice,
-                geoaverage: geoaverage,
+                observegeo: observegeo,
                 montecarlopath: montecarlopath,
                 asiantype: "arithm_mc",
                 optiontype: "call"
@@ -206,7 +206,7 @@ $(document).ready(function(){
                 interestrate: interestrate,
                 maturity: maturity,
                 strikeprice: strikeprice,
-                geoaverage: geoaverage,
+                observegeo: observegeo,
                 montecarlopath: montecarlopath,
                 asiantype: "arithm_mc",
                 optiontype: "put"
@@ -226,7 +226,7 @@ $(document).ready(function(){
                 interestrate: interestrate,
                 maturity: maturity,
                 strikeprice: strikeprice,
-                geoaverage: geoaverage,
+                observegeo: observegeo,
                 montecarlopath: montecarlopath,
                 asiantype: "arithm_cv",
                 optiontype: "call"
@@ -246,7 +246,7 @@ $(document).ready(function(){
                 interestrate: interestrate,
                 maturity: maturity,
                 strikeprice: strikeprice,
-                geoaverage: geoaverage,
+                observegeo: observegeo,
                 montecarlopath: montecarlopath,
                 asiantype: "arithm_cv",
                 optiontype: "put"
