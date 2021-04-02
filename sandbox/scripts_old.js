@@ -1,22 +1,11 @@
 $(document).ready(function(){
-    var spotprice;
-    var volatility;
-    var interestrate;
-    var reporate;
-    var maturity;
-    var strikeprice;
-    var optionpremium;
-    $('.output-panel').click(function() {
-        spotprice = $("#spotprice").val();
-        volatility = $("#volatility").val();
-        interestrate = $("#interestrate").val();
-        reporate = $("#reporate").val();
-        maturity = $("#maturity").val();
-        strikeprice = $("#strikeprice").val();
-        optionpremium = $("#optionpremium").val();
-    });
-    
     $('#european_call').click(function() {
+        var spotprice = $("#spotprice").val();
+        var volatility = $("#volatility").val();
+        var interestrate = $("#interestrate").val();
+        var reporate = $("#reporate").val();
+        var maturity = $("#maturity").val();
+        var strikeprice = $("#strikeprice").val();
         $.ajax({
             url: "/calculate_european_option_value",
             type: "get",
@@ -35,6 +24,12 @@ $(document).ready(function(){
         });
     });
     $('#european_put').click(function() {
+        var spotprice = $("#spotprice").val();
+        var volatility = $("#volatility").val();
+        var interestrate = $("#interestrate").val();
+        var reporate = $("#reporate").val();
+        var maturity = $("#maturity").val();
+        var strikeprice = $("#strikeprice").val();
         $.ajax({
             url: "/calculate_european_option_value",
             type: "get",
@@ -53,6 +48,13 @@ $(document).ready(function(){
         });
     });
     $('#impliedvol_call').click(function() {
+        var spotprice = $("#spotprice").val();
+        var volatility = $("#volatility").val();
+        var interestrate = $("#interestrate").val();
+        var reporate = $("#reporate").val();
+        var maturity = $("#maturity").val();
+        var strikeprice = $("#strikeprice").val();
+        var optionpremium = $("#optionpremium").val();
         $.ajax({
             url: "/calculate_implied_vol",
             type: "get",
@@ -72,6 +74,13 @@ $(document).ready(function(){
         });
     });
     $('#impliedvol_put').click(function() {
+        var spotprice = $("#spotprice").val();
+        var volatility = $("#volatility").val();
+        var interestrate = $("#interestrate").val();
+        var reporate = $("#reporate").val();
+        var maturity = $("#maturity").val();
+        var strikeprice = $("#strikeprice").val();
+        var optionpremium = $("#optionpremium").val();
         $.ajax({
             url: "/calculate_implied_vol",
             type: "get",
