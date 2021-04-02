@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request, redirect, url_for, send_from_directory, jsonify
 import numpy as np
 import black_scholes
+import american_option
 import asian_option
 
 app = Flask(__name__)
@@ -34,6 +35,18 @@ def calculate_implied_vol():
     result = black_scholes.newtons_method(C_true, S, K, T, r, q, option_type)
     return jsonify({"result":result})
 
+@app.route('/calculate_american_option_value')
+def calculate_american_option_value():
+    S = float(request.args.get('spotprice'))
+    sigma = float(request.args.get('volatility'))
+    r = float(request.args.get('interestrate'))
+    T = float(request.args.get('maturity'))
+    K = float(request.args.get('strikeprice'))
+    N = int(request.args.get('observations'))
+    option_type = request.args.get('optiontype')
+    result = american_option.binomial_tree(S, K, T, sigma, r, N, option_type)
+    return jsonify({"result":result})
+
 @app.route('/calculate_asian_option_value')
 def calculate_asian_option_value():
     S = float(request.args.get('spotprice'))
@@ -44,7 +57,7 @@ def calculate_asian_option_value():
     option_type = request.args.get('optiontype')
 
     asian_type = request.args.get('asiantype')
-    N = int(request.args.get('observegeo'))
+    N = int(request.args.get('observations'))
     M = int(request.args.get('montecarlopath'))
 
     asian_option_model = asian_option.AsianOptionCal(sigma=sigma,N=N,S=S,K=K,T=T,r=r,M=M,option=option_type)

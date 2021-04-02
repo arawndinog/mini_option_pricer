@@ -6,7 +6,7 @@ $(document).ready(function(){
     var maturity;
     var strikeprice;
     var optionpremium;
-    var observegeo;
+    var observations;
     var montecarlopath;
     $('.output-panel').click(function() {
         spotprice = $("#spotprice").val();
@@ -16,7 +16,7 @@ $(document).ready(function(){
         maturity = $("#maturity").val();
         strikeprice = $("#strikeprice").val();
         optionpremium = $("#optionpremium").val();
-        observegeo = $("#observegeo").val();
+        observations = $("#observations").val();
         montecarlopath = $("#montecarlopath").val();
     });
     // European options
@@ -95,6 +95,43 @@ $(document).ready(function(){
             },
         });
     });
+    // American options
+    $('#american_call').click(function() {
+        $.ajax({
+            url: "/calculate_american_option_value",
+            type: "get",
+            data: {
+                spotprice: spotprice,
+                volatility: volatility,
+                interestrate: interestrate,
+                maturity: maturity,
+                strikeprice: strikeprice,
+                observations: observations,
+                optiontype: "call"
+            },
+            success: function(response) {
+                $("#american_call .result").html('<p>Result: '+response.result.toString()+'</p>');
+            },
+        });
+    });
+    $('#american_put').click(function() {
+        $.ajax({
+            url: "/calculate_american_option_value",
+            type: "get",
+            data: {
+                spotprice: spotprice,
+                volatility: volatility,
+                interestrate: interestrate,
+                maturity: maturity,
+                strikeprice: strikeprice,
+                observations: observations,
+                optiontype: "put"
+            },
+            success: function(response) {
+                $("#american_put .result").html('<p>Result: '+response.result.toString()+'</p>');
+            },
+        });
+    });
     // Asian options
     $('#geo_asian_closed_form_call').click(function() {
         $.ajax({
@@ -106,7 +143,7 @@ $(document).ready(function(){
                 interestrate: interestrate,
                 maturity: maturity,
                 strikeprice: strikeprice,
-                observegeo: observegeo,
+                observations: observations,
                 montecarlopath: montecarlopath,
                 asiantype: "geo_bs",
                 optiontype: "call"
@@ -126,7 +163,7 @@ $(document).ready(function(){
                 interestrate: interestrate,
                 maturity: maturity,
                 strikeprice: strikeprice,
-                observegeo: observegeo,
+                observations: observations,
                 montecarlopath: montecarlopath,
                 asiantype: "geo_bs",
                 optiontype: "put"
@@ -146,7 +183,7 @@ $(document).ready(function(){
                 interestrate: interestrate,
                 maturity: maturity,
                 strikeprice: strikeprice,
-                observegeo: observegeo,
+                observations: observations,
                 montecarlopath: montecarlopath,
                 asiantype: "geo_mc",
                 optiontype: "call"
@@ -166,7 +203,7 @@ $(document).ready(function(){
                 interestrate: interestrate,
                 maturity: maturity,
                 strikeprice: strikeprice,
-                observegeo: observegeo,
+                observations: observations,
                 montecarlopath: montecarlopath,
                 asiantype: "geo_mc",
                 optiontype: "put"
@@ -186,7 +223,7 @@ $(document).ready(function(){
                 interestrate: interestrate,
                 maturity: maturity,
                 strikeprice: strikeprice,
-                observegeo: observegeo,
+                observations: observations,
                 montecarlopath: montecarlopath,
                 asiantype: "arithm_mc",
                 optiontype: "call"
@@ -206,7 +243,7 @@ $(document).ready(function(){
                 interestrate: interestrate,
                 maturity: maturity,
                 strikeprice: strikeprice,
-                observegeo: observegeo,
+                observations: observations,
                 montecarlopath: montecarlopath,
                 asiantype: "arithm_mc",
                 optiontype: "put"
@@ -226,7 +263,7 @@ $(document).ready(function(){
                 interestrate: interestrate,
                 maturity: maturity,
                 strikeprice: strikeprice,
-                observegeo: observegeo,
+                observations: observations,
                 montecarlopath: montecarlopath,
                 asiantype: "arithm_cv",
                 optiontype: "call"
@@ -246,7 +283,7 @@ $(document).ready(function(){
                 interestrate: interestrate,
                 maturity: maturity,
                 strikeprice: strikeprice,
-                observegeo: observegeo,
+                observations: observations,
                 montecarlopath: montecarlopath,
                 asiantype: "arithm_cv",
                 optiontype: "put"
