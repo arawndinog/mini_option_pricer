@@ -1,6 +1,4 @@
 $(document).ready(function(){
-    var spotprice_all;
-    var volatility_all;
     var spotprice;
     var volatility;
     var spotprice2;
@@ -14,8 +12,10 @@ $(document).ready(function(){
     var montecarlopath;
     var correlation;
     $('.output-panel').click(function() {
-        spotprice_all = $("#spotprice").val();
-        volatility_all = $("#volatility").val();
+        spotprice = $("#spotprice").val();
+        volatility = $("#volatility").val();
+        spotprice2 = $("#spotprice2").val();
+        volatility2 = $("#volatility2").val();
         interestrate = $("#interestrate").val();
         reporate = $("#reporate").val();
         maturity = $("#maturity").val();
@@ -24,12 +24,6 @@ $(document).ready(function(){
         observations = $("#observations").val();
         montecarlopath = $("#montecarlopath").val();
         correlation = $("#correlation").val();
-        spotprice_all = spotprice_all.split(",");
-        volatility_all = volatility_all.split(",");
-        spotprice = spotprice_all[0];
-        spotprice2 = spotprice_all[1];
-        volatility = volatility_all[0];
-        volatility2 = volatility_all[1];
     });
     // European options
     $('#european_call').click(function() {
