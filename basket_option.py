@@ -43,23 +43,19 @@ class basketGeo:
 
 class basketArith(basketGeo):
 
-    def __init__(self, s0_1=None, s0_2=None, sigma_1=None, sigma_2=None,
-                 r=0, T=0, K=None, rho=None, option=None, m=100000,
-                 ctrl_var=False):
+    def __init__(self, s0_1=None, s0_2=None, sigma_1=None, sigma_2=None, r=0, T=0, K=None, rho=None, option=None, m=100000, control_variate=False):
 
         basketGeo.__init__(self, s0_1, s0_2, sigma_1, sigma_2, r, T, K, rho, option)
         self.m = m
-        self.ctrl_var = ctrl_var
+        self.control_variate = control_variate
 
-    def pricing(self, num_randoms=100):
+    def pricing(self):
 
         n = 2
         m = self.m
-        dt = self.T / num_randoms
         sigsqT = (self.sigma_1**2+2*self.sigma_1*self.sigma_2*self.rho+self.sigma_2**2)/(n**2)
         muT = (self.r - 0.5*((self.sigma_1**2+self.sigma_2**2)/n) + 0.5*sigsqT)*self.T
 
-        Bg = [0] * m
         Ba = [0] * m
         Bg0 = np.sqrt(self.s0_1 * self.s0_2)
 
@@ -113,7 +109,7 @@ class basketArith(basketGeo):
         Pstd = np.std(arithPayoff)
         confmc = (Pmean-1.96*Pstd/np.sqrt(m), Pmean+1.96*Pstd/np.sqrt(m))
 
-        if not self.ctrl_var:
+        if not self.control_variate:
             return Pmean, confmc
         else:
             conXY_call = np.mean(np.multiply(arithPayoff, geoPayoff_call)) - (np.mean(arithPayoff) * np.mean(geoPayoff_call))
