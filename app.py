@@ -100,7 +100,6 @@ def calculate_basket_option_value():
     elif basket_type == "arithm_cv":
         basket_option_model = basket_option.basketArith(s0_1, s0_2, sigma_1, sigma_2, r, T, K, rho, option_type, M, True)
         result = float(basket_option_model.pricing()[0])
-        print(result)
 
     return jsonify({"result":result})
 
