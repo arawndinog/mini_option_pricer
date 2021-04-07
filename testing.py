@@ -2,6 +2,7 @@ from numpy import testing
 import black_scholes
 import american_option
 import asian_option
+import basket_option
 
 print("Testing European options...")
 testing.assert_approx_equal(black_scholes.option_value(50, 50, 0.5, 0.2, 0.01, 0, "call"), 2.9380121169138036, 4)
@@ -32,5 +33,20 @@ testing.assert_approx_equal(asian_option_model.geometricStandardMC(), 13.286, 4)
 testing.assert_approx_equal(asian_option_model.arithmetricStandardMC(), 14.767, 4)
 testing.assert_approx_equal(asian_option_model.arithmetricStandardMCWithCV(), 14.738, 4)
 print("  PASS")
+
+print("Testing geometric basket options...")
+print(basket_option.basketGeo(s0_1=100, s0_2=100, K=100, sigma_1=0.3, sigma_2=0.3, r=0.05, T=3, rho=0.5 ,option="put").basketGeoPrice())
+print(basket_option.basketGeo(s0_1=100, s0_2=100, K=100, sigma_1=0.3, sigma_2=0.3, r=0.05, T=3, rho=0.9 ,option="put").basketGeoPrice())
+print(basket_option.basketGeo(s0_1=100, s0_2=100, K=100, sigma_1=0.1, sigma_2=0.3, r=0.05, T=3, rho=0.5 ,option="put").basketGeoPrice())
+print(basket_option.basketGeo(s0_1=100, s0_2=100, K=80, sigma_1=0.3, sigma_2=0.3, r=0.05, T=3, rho=0.5 ,option="put").basketGeoPrice())
+print(basket_option.basketGeo(s0_1=100, s0_2=100, K=120, sigma_1=0.3, sigma_2=0.3, r=0.05, T=3, rho=0.5 ,option="put").basketGeoPrice())
+print(basket_option.basketGeo(s0_1=100, s0_2=100, K=100, sigma_1=0.5, sigma_2=0.5, r=0.05, T=3, rho=0.5 ,option="put").basketGeoPrice())
+
+print(basket_option.basketGeo(s0_1=100, s0_2=100, K=100, sigma_1=0.3, sigma_2=0.3, r=0.05, T=3, rho=0.5 ,option="call").basketGeoPrice())
+print(basket_option.basketGeo(s0_1=100, s0_2=100, K=100, sigma_1=0.3, sigma_2=0.3, r=0.05, T=3, rho=0.9 ,option="call").basketGeoPrice())
+print(basket_option.basketGeo(s0_1=100, s0_2=100, K=100, sigma_1=0.1, sigma_2=0.3, r=0.05, T=3, rho=0.5 ,option="call").basketGeoPrice())
+print(basket_option.basketGeo(s0_1=100, s0_2=100, K=80, sigma_1=0.3, sigma_2=0.3, r=0.05, T=3, rho=0.5 ,option="call").basketGeoPrice())
+print(basket_option.basketGeo(s0_1=100, s0_2=100, K=120, sigma_1=0.3, sigma_2=0.3, r=0.05, T=3, rho=0.5 ,option="call").basketGeoPrice())
+print(basket_option.basketGeo(s0_1=100, s0_2=100, K=100, sigma_1=0.5, sigma_2=0.5, r=0.05, T=3, rho=0.5 ,option="call").basketGeoPrice())
 
 print("Testing completed.")

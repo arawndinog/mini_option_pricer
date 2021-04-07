@@ -22,7 +22,7 @@ def option_value(S, K, T, sigma, r, q, option_type):
 
 def vega(S, K, T, sigma, r, q):
     d1 = black_scholes_d(S, K, T, sigma, r, q, 1)
-    normhat = (1/np.sqrt(2*math.pi)) * np.exp(0.5*-d1*(sigma**2))
+    normhat = (1/np.sqrt(2*math.pi)) * np.exp(0.5*(-1)*d1*(sigma**2))
     result = S * np.exp(-q * T) * np.sqrt(T) * normhat
     return result
 

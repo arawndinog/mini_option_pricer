@@ -5,8 +5,7 @@ from scipy.stats import norm
 
 class basketGeo:
 
-    def __init__(self, s0_1 = None, s0_2 = None, sigma_1 = None, sigma_2 = None, 
-                 r = 0, T = 0, K = None, rho = None, option_type = None):
+    def __init__(self, s0_1 = None, s0_2 = None, sigma_1 = None, sigma_2 = None, r = 0, T = 0, K = None, rho = None, option = None):
 
         self.s0_1 = s0_1
         self.s0_2 = s0_2
@@ -16,10 +15,10 @@ class basketGeo:
         self.T = T
         self.K = K
         self.rho = rho
-        self.option_type = option_type
+        self.option = option
 
-    def CallGeoBasket(self, t = 0):
-        
+    def basketGeoPrice(self, t = 0):
+
         s0_1, s0_2, sigma_1, sigma_2, r, T, K, rho = self.s0_1, self.s0_2, self.sigma_1, self.sigma_2, self.r, self.T, self.K, self.rho
         
         C11, C12, C22 = 1, rho, 1 
@@ -29,42 +28,26 @@ class basketGeo:
         Bg = math.sqrt(s0_1*s0_2)
         d1 = (math.log(Bg/K) + (mu + (1/2)*sigma_B**2)*T)/(sigma_B*math.sqrt(T))
         d2 = d1 - sigma_B*math.sqrt(T)
-        
-        N_d1_P = norm.cdf(d1)
-        N_d2_P = norm.cdf(d2)
-        
-        Call = math.e**(-(r*T))*(Bg*math.e**(mu*T)*N_d1_P - K*N_d2_P)
-        
-        return Call
-    
-    def PutGeoBasket(self, t = 0):
-        
-        s0_1, s0_2, sigma_1, sigma_2, r, T, K, rho = self.s0_1, self.s0_2, self.sigma_1, self.sigma_2, self.r, self.T, self.K, self.rho
-        
-        C11, C12, C22 = 1, rho, 1 
-        sigma_B = math.sqrt((sigma_1**2)*C11 + 2*sigma_1*sigma_2*C12 + sigma_2**2*C22)/2
-        mu = r - (1/2)*((sigma_1**2 + sigma_2**2)/2) + (1/2)*sigma_B**2
-        
-        Bg = math.sqrt(s0_1*s0_2)
-        d1 = (math.log(Bg/K) + (mu + (1/2)*sigma_B**2)*T)/(sigma_B*math.sqrt(T))
-        d2 = d1 - sigma_B*math.sqrt(T)
-        
-        N_d1_N = norm.cdf(-d1)
-        N_d2_N = norm.cdf(-d2)
-        
-        Put = math.e**(-(r*T))*(K*N_d2_N - Bg*math.e**(mu*T)*N_d1_N)
-        
-        return Put
 
+        if self.option == "call":
+            N_d1 = norm.cdf(d1)
+            N_d2 = norm.cdf(d2)
+            
+            return math.e**(-(r*T))*(Bg*math.e**(mu*T)*N_d1 - K*N_d2)
+
+        elif self.option == "put":
+            N_d1 = norm.cdf(-d1)
+            N_d2 = norm.cdf(-d2)
+
+            return math.e**(-(r*T))*(K*N_d2 - Bg*math.e**(mu*T)*N_d1)
 
 class basketArith(basketGeo):
 
     def __init__(self, s0_1=None, s0_2=None, sigma_1=None, sigma_2=None,
-                 r=0, T=0, K=None, rho=None, option_type=None, m=100000,
+                 r=0, T=0, K=None, rho=None, option=None, m=100000,
                  ctrl_var=False):
 
-        basketGeo.__init__(self, s0_1, s0_2, sigma_1, sigma_2, r, T,
-                                    K, rho, option_type)
+        basketGeo.__init__(self, s0_1, s0_2, sigma_1, sigma_2, r, T, K, rho, option)
         self.m = m
         self.ctrl_var = ctrl_var
 
@@ -110,7 +93,7 @@ class basketArith(basketGeo):
             geoPayoff_call[i] = np.exp(-self.r*self.T)*max(geoMean-self.K, 0)
             geoPayoff_put[i] = np.exp(-self.r*self.T)*max(self.K-geoMean, 0)
                  
-            if self.option_type == "call":
+            if self.option == "call":
                 
                 arithPayoff[i] = Ba[i] - self.K
                 if arithPayoff[i] > 0:
@@ -118,7 +101,7 @@ class basketArith(basketGeo):
                 else:
                     arithPayoff[i] = 0
 
-            elif self.option_type == "put":
+            elif self.option == "put":
 
                 arithPayoff[i] = self.K - Ba[i]
                 if arithPayoff[i] > 0:
@@ -138,11 +121,11 @@ class basketArith(basketGeo):
             conXY_put = np.mean(np.multiply(arithPayoff, geoPayoff_put)) - (np.mean(arithPayoff) * np.mean(geoPayoff_put))
             theta_put = conXY_put / np.var(geoPayoff_put)
 
-            if self.option_type == 'call':
+            if self.option == 'call':
                 geo_call = np.exp(-self.r * self.T) * (Bg0 * np.exp(muT) * N1 - self.K * N2)
                 Z = arithPayoff + theta_call * (geo_call - geoPayoff_call)
 
-            elif self.option_type == 'put':
+            elif self.option == 'put':
                 geo_put = np.exp(-self.r * self.T) * (self.K * N2_ - Bg0 * np.exp(muT) * N1_)
                 Z = arithPayoff + theta_put * (geo_put - geoPayoff_put)
 
