@@ -90,10 +90,7 @@ def calculate_basket_option_value():
 
     if basket_type == "geo_mc":
         basket_option_model = basket_option.basketGeo(s0_1, s0_2, sigma_1, sigma_2, r, T, K, rho, option_type)
-        if option_type == "call":
-            result = basket_option_model.CallGeoBasket()
-        elif option_type == "put":
-            result = basket_option_model.PutGeoBasket()
+        result = basket_option_model.basketGeoPrice()
     elif basket_type == "arithm_mc":
         basket_option_model = basket_option.basketArith(s0_1, s0_2, sigma_1, sigma_2, r, T, K, rho, option_type, M, False)
         result = basket_option_model.pricing()[0]
