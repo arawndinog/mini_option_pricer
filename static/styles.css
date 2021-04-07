@@ -7,17 +7,30 @@ body {
     top:0;
     left:0;
     height:100%;
-    width:420px;
+    width:450px;
     background:white;
     box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
     padding: 20px;
     line-height:40px;
     text-align: right;
 }
+.input-panel .info {
+    position:absolute;
+    box-sizing:border-box;
+    bottom:70px;
+    right:0;
+    height:400px;
+    width:100%;
+    text-align: left;
+    line-height:20px;
+    padding:10px;
+    font-size: 12px;
+}
 .input-panel .masthead {
     position:absolute;
-    bottom:20px;
+    bottom:0;
     right:0;
+    height:70px;
     width:100%;
     text-align: center;
     line-height:30px;
@@ -29,9 +42,9 @@ body {
     position:relative;
     box-sizing: border-box;
     padding:20px;
-    width:calc( 100% - 420px );
+    width:calc( 100% - 450px );
     top:0;
-    left:420px;
+    left:450px;
 }
 .output-panel {
     position:relative;

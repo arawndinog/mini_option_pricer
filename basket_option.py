@@ -110,7 +110,7 @@ class basketArith(basketGeo):
             geoPayoff_call[i] = np.exp(-self.r*self.T)*max(geoMean-self.K, 0)
             geoPayoff_put[i] = np.exp(-self.r*self.T)*max(self.K-geoMean, 0)
 
-            if i % 50 == 0:
+            # if i % 50 == 0:
                  
             if self.option_type == "call":
                 

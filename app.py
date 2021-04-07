@@ -3,6 +3,7 @@ import numpy as np
 import black_scholes
 import american_option
 import asian_option
+import basket_option
 
 app = Flask(__name__)
 
@@ -69,6 +70,37 @@ def calculate_asian_option_value():
         result = asian_option_model.arithmetricStandardMC()
     elif asian_type == "arithm_cv":
         result = asian_option_model.arithmetricStandardMCWithCV()
+
+    return jsonify({"result":result})
+
+@app.route('/calculate_basket_option_value')
+def calculate_basket_option_value():
+    s0_1 = float(request.args.get('spotprice'))
+    s0_2 = float(request.args.get('spotprice2'))
+    sigma_1 = float(request.args.get('volatility'))
+    sigma_2 = float(request.args.get('volatility2'))
+    r = float(request.args.get('interestrate'))
+    T = float(request.args.get('maturity'))
+    K = float(request.args.get('strikeprice'))
+    option_type = request.args.get('optiontype')
+
+    rho = float(request.args.get('correlation'))
+    M = int(request.args.get('montecarlopath'))
+    basket_type = request.args.get('baskettype')
+
+    if basket_type == "geo_mc":
+        basket_option_model = basket_option.basketGeo(s0_1, s0_2, sigma_1, sigma_2, r, T, K, rho, option_type)
+        if option_type == "call":
+            result = basket_option_model.CallGeoBasket()
+        elif option_type == "put":
+            result = basket_option_model.PutGeoBasket()
+    elif basket_type == "arithm_mc":
+        basket_option_model = basket_option.basketArith(s0_1, s0_2, sigma_1, sigma_2, r, T, K, rho, option_type, M, False)
+        result = basket_option_model.pricing()[0]
+    elif basket_type == "arithm_cv":
+        basket_option_model = basket_option.basketArith(s0_1, s0_2, sigma_1, sigma_2, r, T, K, rho, option_type, M, True)
+        result = float(basket_option_model.pricing()[0])
+        print(result)
 
     return jsonify({"result":result})
 

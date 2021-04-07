@@ -1,6 +1,10 @@
 $(document).ready(function(){
+    var spotprice_all;
+    var volatility_all;
     var spotprice;
     var volatility;
+    var spotprice2;
+    var volatility2;
     var interestrate;
     var reporate;
     var maturity;
@@ -8,9 +12,10 @@ $(document).ready(function(){
     var optionpremium;
     var observations;
     var montecarlopath;
+    var correlation;
     $('.output-panel').click(function() {
-        spotprice = $("#spotprice").val();
-        volatility = $("#volatility").val();
+        spotprice_all = $("#spotprice").val();
+        volatility_all = $("#volatility").val();
         interestrate = $("#interestrate").val();
         reporate = $("#reporate").val();
         maturity = $("#maturity").val();
@@ -18,6 +23,13 @@ $(document).ready(function(){
         optionpremium = $("#optionpremium").val();
         observations = $("#observations").val();
         montecarlopath = $("#montecarlopath").val();
+        correlation = $("#correlation").val();
+        spotprice_all = spotprice_all.split(",");
+        volatility_all = volatility_all.split(",");
+        spotprice = spotprice_all[0];
+        spotprice2 = spotprice_all[1];
+        volatility = volatility_all[0];
+        volatility2 = volatility_all[1];
     });
     // European options
     $('#european_call').click(function() {
@@ -290,6 +302,145 @@ $(document).ready(function(){
             },
             success: function(response) {
                 $("#arithm_asian_cv_put .result").html('<p>Result: '+response.result.toString()+'</p>');
+            },
+        });
+    });
+    // Basket options
+    $('#geo_basket_call').click(function() {
+        $.ajax({
+            url: "/calculate_basket_option_value",
+            type: "get",
+            data: {
+                spotprice: spotprice,
+                spotprice2: spotprice2,
+                volatility: volatility,
+                volatility2: volatility2,
+                interestrate: interestrate,
+                maturity: maturity,
+                strikeprice: strikeprice,
+                // observations: observations,
+                montecarlopath: montecarlopath,
+                correlation: correlation,
+                baskettype: "geo_mc",
+                optiontype: "call"
+            },
+            success: function(response) {
+                $("#geo_basket_call .result").html('<p>Result: '+response.result.toString()+'</p>');
+            },
+        });
+    });
+    $('#geo_basket_put').click(function() {
+        $.ajax({
+            url: "/calculate_basket_option_value",
+            type: "get",
+            data: {
+                spotprice: spotprice,
+                spotprice2: spotprice2,
+                volatility: volatility,
+                volatility2: volatility2,
+                interestrate: interestrate,
+                maturity: maturity,
+                strikeprice: strikeprice,
+                // observations: observations,
+                montecarlopath: montecarlopath,
+                correlation: correlation,
+                baskettype: "geo_mc",
+                optiontype: "put"
+            },
+            success: function(response) {
+                $("#geo_basket_put .result").html('<p>Result: '+response.result.toString()+'</p>');
+            },
+        });
+    });
+    $('#arithm_basket_mc_call').click(function() {
+        $.ajax({
+            url: "/calculate_basket_option_value",
+            type: "get",
+            data: {
+                spotprice: spotprice,
+                spotprice2: spotprice2,
+                volatility: volatility,
+                volatility2: volatility2,
+                interestrate: interestrate,
+                maturity: maturity,
+                strikeprice: strikeprice,
+                // observations: observations,
+                montecarlopath: montecarlopath,
+                correlation: correlation,
+                baskettype: "arithm_mc",
+                optiontype: "call"
+            },
+            success: function(response) {
+                $("#arithm_basket_mc_call .result").html('<p>Result: '+response.result.toString()+'</p>');
+            },
+        });
+    });
+    $('#arithm_basket_mc_put').click(function() {
+        $.ajax({
+            url: "/calculate_basket_option_value",
+            type: "get",
+            data: {
+                spotprice: spotprice,
+                spotprice2: spotprice2,
+                volatility: volatility,
+                volatility2: volatility2,
+                interestrate: interestrate,
+                maturity: maturity,
+                strikeprice: strikeprice,
+                // observations: observations,
+                montecarlopath: montecarlopath,
+                correlation: correlation,
+                baskettype: "arithm_mc",
+                optiontype: "put"
+            },
+            success: function(response) {
+                $("#arithm_basket_mc_put .result").html('<p>Result: '+response.result.toString()+'</p>');
+            },
+        });
+    });
+    $('#arithm_basket_cv_call').click(function() {
+        $.ajax({
+            url: "/calculate_basket_option_value",
+            type: "get",
+            data: {
+                spotprice: spotprice,
+                spotprice2: spotprice2,
+                volatility: volatility,
+                volatility2: volatility2,
+                interestrate: interestrate,
+                maturity: maturity,
+                strikeprice: strikeprice,
+                // observations: observations,
+                montecarlopath: montecarlopath,
+                correlation: correlation,
+                baskettype: "arithm_cv",
+                optiontype: "call"
+            },
+            success: function(response) {
+                $("#arithm_basket_cv_call .result").html('<p>Result: '+response.result.toString()+'</p>');
+            },
+        });
+    });
+    $('#arithm_basket_cv_put').click(function() {
+        $.ajax({
+            url: "/calculate_basket_option_value",
+            type: "get",
+            data: {
+                spotprice: spotprice,
+                spotprice2: spotprice2,
+                volatility: volatility,
+                volatility2: volatility2,
+                interestrate: interestrate,
+                maturity: maturity,
+                strikeprice: strikeprice,
+                // observations: observations,
+                montecarlopath: montecarlopath,
+                correlation: correlation,
+                baskettype: "arithm_cv",
+                optiontype: "put"
+            },
+            success: function(response) {
+                $("#arithm_basket_cv_put .result").html('<p>Result: '+response.result.toString()+'</p>');
             },
         });
     });

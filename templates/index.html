@@ -9,7 +9,8 @@
     <body style="background:rgb(237, 236, 243); font-family: 'Open Sans', sans-serif;">
         <div class="input-panel">
             Spot price of asset <span style="font-weight:bold;">S(0)</span>
-            <input type="number" id="spotprice" name="spotprice" value=0 step="0.01"><br/>
+            <!-- <input type="number" id="spotprice" name="spotprice" value=0 step="0.01"><br/> -->
+            <input type="text" id="spotprice" name="spotprice" value=0><br/>
 
             Strike price <span style="font-weight:bold;">K</span>
             <input type="number" id="strikeprice" name="strikeprice" value=0 step="0.01"><br/>
@@ -18,7 +19,8 @@
             <input type="number" id="maturity" name="maturity" value=0 step="0.01"><br/>
 
             Volatility <span style="font-weight:bold;">σ</span>
-            <input type="number" id="volatility" name="volatility" value=0 step="0.01"><br/>
+            <!-- <input type="number" id="volatility" name="volatility" value=0 step="0.01"><br/> -->
+            <input type="text" id="volatility" name="volatility" value=0><br/>
 
             Risk-free interest rate <span style="font-weight:bold;">r</span>
             <input type="number" id="interestrate" name="interestrate" value=0 step="0.01"><br/>
@@ -34,6 +36,13 @@
 
             Monte Carlo paths <span style="font-weight:bold;">M</span>
             <input type="number" id="montecarlopath" name="montecarlopath" value=0><br/>
+
+            Assets correlation <span style="font-weight:bold;">ρ</span>
+            <input type="number" id="correlation" name="correlation" value=0><br/>
+            <div class="info">
+                🛈 Comma "," seperate multiple entries for S(0) and σ for basket options.<br/>
+                🛈 Only supports two entries at this time.<br/>
+            </div>
             <div class="masthead">
                 COMP7405 Group 2 - Assignment 3<br/>
                 Lee Cheuk Him &nbsp;&nbsp; Tang Tun Yu &nbsp;&nbsp; Wong, Adrian
@@ -112,12 +121,24 @@
                 <span class="title">Geometric Basket Put Option</span>
                 <div class="result"></div>
             </div>
-            <div class="output-panel" id="arithm_basket_call"> 
-                <span class="title">Arithmetic Basket Call Option</span>
+            <div class="output-panel" id="arithm_basket_mc_call"> 
+                <span class="title">Arithmetic Basket Call Option</span><br/>
+                from standard Monte Carlo
                 <div class="result"></div>
             </div>
-            <div class="output-panel" id="arithm_basket_put"> 
-                <span class="title">Arithmetic Basket Put Option</span>
+            <div class="output-panel" id="arithm_basket_mc_put"> 
+                <span class="title">Arithmetic Basket Put Option</span><br/>
+                from standard Monte Carlo
+                <div class="result"></div>
+            </div>
+            <div class="output-panel" id="arithm_basket_cv_call"> 
+                <span class="title">Arithmetic Basket Call Option</span><br/>
+                from MC with Control Variate
+                <div class="result"></div>
+            </div>
+            <div class="output-panel" id="arithm_basket_cv_put"> 
+                <span class="title">Arithmetic Basket Put Option</span><br/>
+                from MC with Control Variate
                 <div class="result"></div>
             </div>
         </div>
