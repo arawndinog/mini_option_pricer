@@ -67,3 +67,9 @@ body {
 .output-panel span.title {
     font-weight: bold;
 }
+.output-panel .result span {
+    background: #303030;
+    color: white;
+    padding: 0 5px;
+    border-radius: 5px;
+}

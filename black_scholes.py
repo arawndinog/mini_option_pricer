@@ -43,5 +43,5 @@ def newtons_method(C_true, S, K, T, r, q, option_type):
         sigmadiff = abs(increment)
         if sigma < 0:
             # vol cannot be negative
-            return None
+            return "Volatility yielded negative"
     return sigma

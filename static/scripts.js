@@ -40,7 +40,7 @@ $(document).ready(function(){
                 optiontype: "call"
             },
             success: function(response) {
-                $("#european_call .result").html('<p>Result: '+response.result.toString()+'</p>');
+                $("#european_call .result").html('<p><span>Result</span> '+response.result.toString()+'</p>');
             },
         });
     });
@@ -58,7 +58,7 @@ $(document).ready(function(){
                 optiontype: "put"
             },
             success: function(response) {
-                $("#european_put .result").html('<p>Result: '+response.result.toString()+'</p>');
+                $("#european_put .result").html('<p><span>Result</span> '+response.result.toString()+'</p>');
             },
         });
     });
@@ -78,7 +78,7 @@ $(document).ready(function(){
                 optiontype: "call"
             },
             success: function(response) {
-                $("#impliedvol_call .result").html('<p>Result: '+response.result.toString()+'</p>');
+                $("#impliedvol_call .result").html('<p><span>Result</span> '+response.result.toString()+'</p>');
             },
         });
     });
@@ -97,7 +97,7 @@ $(document).ready(function(){
                 optiontype: "put"
             },
             success: function(response) {
-                $("#impliedvol_put .result").html('<p>Result: '+response.result.toString()+'</p>');
+                $("#impliedvol_put .result").html('<p><span>Result</span> '+response.result.toString()+'</p>');
             },
         });
     });
@@ -116,7 +116,7 @@ $(document).ready(function(){
                 optiontype: "call"
             },
             success: function(response) {
-                $("#american_call .result").html('<p>Result: '+response.result.toString()+'</p>');
+                $("#american_call .result").html('<p><span>Result</span> '+response.result.toString()+'</p>');
             },
         });
     });
@@ -134,7 +134,7 @@ $(document).ready(function(){
                 optiontype: "put"
             },
             success: function(response) {
-                $("#american_put .result").html('<p>Result: '+response.result.toString()+'</p>');
+                $("#american_put .result").html('<p><span>Result</span> '+response.result.toString()+'</p>');
             },
         });
     });
@@ -155,7 +155,7 @@ $(document).ready(function(){
                 optiontype: "call"
             },
             success: function(response) {
-                $("#geo_asian_closed_form_call .result").html('<p>Result: '+response.result.toString()+'</p>');
+                $("#geo_asian_closed_form_call .result").html('<p><span>Result</span> '+response.result.toString()+'</p>');
             },
         });
     });
@@ -175,7 +175,7 @@ $(document).ready(function(){
                 optiontype: "put"
             },
             success: function(response) {
-                $("#geo_asian_closed_form_put .result").html('<p>Result: '+response.result.toString()+'</p>');
+                $("#geo_asian_closed_form_put .result").html('<p><span>Result</span> '+response.result.toString()+'</p>');
             },
         });
     });
@@ -195,7 +195,7 @@ $(document).ready(function(){
                 optiontype: "call"
             },
             success: function(response) {
-                $("#geo_asian_mc_call .result").html('<p>Result: '+response.result.toString()+'</p>');
+                $("#geo_asian_mc_call .result").html('<p><span>Result</span> '+response.result.toString()+'</p>');
             },
         });
     });
@@ -215,7 +215,7 @@ $(document).ready(function(){
                 optiontype: "put"
             },
             success: function(response) {
-                $("#geo_asian_mc_put .result").html('<p>Result: '+response.result.toString()+'</p>');
+                $("#geo_asian_mc_put .result").html('<p><span>Result</span> '+response.result.toString()+'</p>');
             },
         });
     });
@@ -235,7 +235,7 @@ $(document).ready(function(){
                 optiontype: "call"
             },
             success: function(response) {
-                $("#arithm_asian_mc_call .result").html('<p>Result: '+response.result.toString()+'</p>');
+                $("#arithm_asian_mc_call .result").html('<p><span>Result</span> '+response.result.toString()+'</p>');
             },
         });
     });
@@ -255,7 +255,7 @@ $(document).ready(function(){
                 optiontype: "put"
             },
             success: function(response) {
-                $("#arithm_asian_mc_put .result").html('<p>Result: '+response.result.toString()+'</p>');
+                $("#arithm_asian_mc_put .result").html('<p><span>Result</span> '+response.result.toString()+'</p>');
             },
         });
     });
@@ -275,7 +275,7 @@ $(document).ready(function(){
                 optiontype: "call"
             },
             success: function(response) {
-                $("#arithm_asian_cv_call .result").html('<p>Result: '+response.result.toString()+'</p>');
+                $("#arithm_asian_cv_call .result").html('<p><span>Result</span> '+response.result.toString()+'</p>');
             },
         });
     });
@@ -295,7 +295,7 @@ $(document).ready(function(){
                 optiontype: "put"
             },
             success: function(response) {
-                $("#arithm_asian_cv_put .result").html('<p>Result: '+response.result.toString()+'</p>');
+                $("#arithm_asian_cv_put .result").html('<p><span>Result</span> '+response.result.toString()+'</p>');
             },
         });
     });
@@ -319,7 +319,7 @@ $(document).ready(function(){
                 optiontype: "call"
             },
             success: function(response) {
-                $("#geo_basket_call .result").html('<p>Result: '+response.result.toString()+'</p>');
+                $("#geo_basket_call .result").html('<p><span>Result</span> '+response.result.toString()+'</p>');
             },
         });
     });
@@ -342,7 +342,7 @@ $(document).ready(function(){
                 optiontype: "put"
             },
             success: function(response) {
-                $("#geo_basket_put .result").html('<p>Result: '+response.result.toString()+'</p>');
+                $("#geo_basket_put .result").html('<p><span>Result</span> '+response.result.toString()+'</p>');
             },
         });
     });
@@ -365,7 +365,7 @@ $(document).ready(function(){
                 optiontype: "call"
             },
             success: function(response) {
-                $("#arithm_basket_mc_call .result").html('<p>Result: '+response.result.toString()+'</p>');
+                $("#arithm_basket_mc_call .result").html('<p><span>Result</span> '+response.result.toString()+'</p>');
             },
         });
     });
@@ -388,7 +388,7 @@ $(document).ready(function(){
                 optiontype: "put"
             },
             success: function(response) {
-                $("#arithm_basket_mc_put .result").html('<p>Result: '+response.result.toString()+'</p>');
+                $("#arithm_basket_mc_put .result").html('<p><span>Result</span> '+response.result.toString()+'</p>');
             },
         });
     });
@@ -411,7 +411,7 @@ $(document).ready(function(){
                 optiontype: "call"
             },
             success: function(response) {
-                $("#arithm_basket_cv_call .result").html('<p>Result: '+response.result.toString()+'</p>');
+                $("#arithm_basket_cv_call .result").html('<p><span>Result</span> '+response.result.toString()+'</p>');
             },
         });
     });
@@ -434,7 +434,7 @@ $(document).ready(function(){
                 optiontype: "put"
             },
             success: function(response) {
-                $("#arithm_basket_cv_put .result").html('<p>Result: '+response.result.toString()+'</p>');
+                $("#arithm_basket_cv_put .result").html('<p><span>Result</span> '+response.result.toString()+'</p>');
             },
         });
     });
