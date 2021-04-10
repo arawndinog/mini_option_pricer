@@ -67,9 +67,9 @@ def calculate_asian_option_value():
     elif  asian_type == "geo_mc":
         result = asian_option_model.geometricStandardMC()
     elif asian_type == "arithm_mc":
-        result = asian_option_model.arithmetricStandardMC()
+        result = asian_option_model.arithmeticStandardMC()
     elif asian_type == "arithm_cv":
-        result = asian_option_model.arithmetricStandardMCWithCV()
+        result = asian_option_model.arithmeticStandardMCWithCV()
 
     return jsonify({"result":result})
 

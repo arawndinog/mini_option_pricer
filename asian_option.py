@@ -44,7 +44,7 @@ class AsianOptionCal:
             spathArray.append(newPrice)     
         return spathArray
     
-    def arithmetricPayoff(self):
+    def arithmeticPayoff(self):
         np.random.seed(3)
         arithPayoffArray = []
         for i in range(self.M):
@@ -54,7 +54,7 @@ class AsianOptionCal:
             
         return arithPayoffArray
 
-    def arithmetricPayoff_process(self, i, arithPayoffArray_main, sub_M):
+    def arithmeticPayoff_process(self, i, arithPayoffArray_main, sub_M):
         arithPayoffArray = []
         np.random.seed(i)
         for i in range(sub_M):
@@ -64,16 +64,16 @@ class AsianOptionCal:
 
         arithPayoffArray_main += arithPayoffArray
 
-    def arithmetricPayoff_mp(self):
+    def arithmeticPayoff_mp(self):
         manager = Manager()
         arithPayoffArray_main = manager.list()
         n_process = 4
         process_list = []
         for i in range(n_process-1):
-            process = Process(target=self.arithmetricPayoff_process, args=(i, arithPayoffArray_main, self.M//n_process))
+            process = Process(target=self.arithmeticPayoff_process, args=(i, arithPayoffArray_main, self.M//n_process))
             process.start()
             process_list.append(process)
-        process = Process(target=self.arithmetricPayoff_process, args=(n_process, arithPayoffArray_main, self.M-(n_process-1)*self.M//n_process))
+        process = Process(target=self.arithmeticPayoff_process, args=(n_process, arithPayoffArray_main, self.M-(n_process-1)*self.M//n_process))
         process.start()
         process_list.append(process)
         for p in process_list:
@@ -91,8 +91,8 @@ class AsianOptionCal:
             geoPayoffArray.append(max(spathMean - self.K, 0))
         return geoPayoffArray
     
-    def arithmetricStandardMC(self):
-        arithPayoffArray = self.arithmetricPayoff()
+    def arithmeticStandardMC(self):
+        arithPayoffArray = self.arithmeticPayoff()
         vArith = self.discount * self.arithmeticMath(arithPayoffArray)
         return vArith
     
@@ -101,8 +101,8 @@ class AsianOptionCal:
         vGeo = self.discount * self.arithmeticMath(geoPayoffArray)
         return vGeo
     
-    def arithmetricStandardMCWithCV(self):
-        arithPayoffArray = self.arithmetricPayoff()
+    def arithmeticStandardMCWithCV(self):
+        arithPayoffArray = self.arithmeticPayoff()
         geoPayoffArray = self.geometricPayoff()
         vArith = self.discount * self.arithmeticMath(arithPayoffArray)
         VCgeo = self.geometricClosedForm()
