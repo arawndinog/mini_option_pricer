@@ -13,5 +13,8 @@ Running GUI:
 python app.py
 GUI should be automatically opened in default browser. Otherwise, go to localhost:5600
 
-Testing test cases:
+Testing test cases (assertions with known solutions):
+python validation.py
+
+Testing test cases (unknown solutions):
 python testing.py
