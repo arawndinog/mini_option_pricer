@@ -35,6 +35,15 @@ body {
     text-align: center;
     line-height:30px;
 }
+.label {
+    background:none;
+    padding:0 5px;
+    transition: 0.2s;
+}
+.highlight {
+    background:rgb(167, 255, 150);
+    border-radius:5px;
+}
 .input-panel input {
     width:150px;
 }

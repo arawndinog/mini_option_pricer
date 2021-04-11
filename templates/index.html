@@ -8,36 +8,36 @@
     </head>
     <body style="background:rgb(237, 236, 243); font-family: 'Open Sans', sans-serif;">
         <div class="input-panel">
-            Spot price of asset <span style="font-weight:bold;">S(0)</span>
+            <span id="spotprice-label" class="label">Spot price of asset <span style="font-weight:bold;">S(0)</span></span>
             <input type="number" id="spotprice" name="spotprice" value=0 step="0.01" style="width:73px;">
             <input type="number" id="spotprice2" name="spotprice2" value=0 step="0.01" style="width:73px;"><br/>
 
-            Strike price <span style="font-weight:bold;">K</span>
+            <span id="strikeprice-label" class="label">Strike price <span style="font-weight:bold;">K</span></span>
             <input type="number" id="strikeprice" name="strikeprice" value=0 step="0.01"><br/>
 
-            Time to maturity (in years) <span style="font-weight:bold;">T</span>
+            <span id="maturity-label" class="label">Time to maturity (in years) <span style="font-weight:bold;">T</span></span>
             <input type="number" id="maturity" name="maturity" value=0 step="0.01"><br/>
 
-            Volatility <span style="font-weight:bold;">σ</span>
+            <span id="volatility-label" class="label">Volatility <span style="font-weight:bold;">σ</span></span>
             <input type="number" id="volatility" name="volatility" value=0 step="0.01" style="width:73px;">
             <input type="number" id="volatility2" name="volatility2" value=0 step="0.01" style="width:73px;"><br/>
 
-            Risk-free interest rate <span style="font-weight:bold;">r</span>
+            <span id="interestrate-label" class="label">Risk-free interest rate <span style="font-weight:bold;">r</span></span>
             <input type="number" id="interestrate" name="interestrate" value=0 step="0.01"><br/>
 
-            Repo rate <span style="font-weight:bold;">q</span>
+            <span id="reporate-label" class="label">Repo rate <span style="font-weight:bold;">q</span></span>
             <input type="number" id="reporate" name="reporate" value=0 step="0.01"><br/>
 
-            Option premium
+            <span id="optionpremium-label" class="label">Option premium</span>
             <input type="number" id="optionpremium" name="optionpremium" value=0 step="0.01"><br/>
 
-            Observations <span style="font-weight:bold;">N</span>
+            <span id="observations-label" class="label">Observations <span style="font-weight:bold;">N</span></span>
             <input type="number" id="observations" name="observations" value=0><br/>
 
-            Monte Carlo paths <span style="font-weight:bold;">M</span>
+            <span id="montecarlopath-label" class="label">Monte Carlo paths <span style="font-weight:bold;">M</span></span>
             <input type="number" id="montecarlopath" name="montecarlopath" value=0><br/>
 
-            Assets correlation <span style="font-weight:bold;">ρ</span>
+            <span id="correlation-label" class="label">Assets correlation <span style="font-weight:bold;">ρ</span></span>
             <input type="number" id="correlation" name="correlation" value=0><br/>
             <!-- <div class="info">
                 🛈 Comma "," seperate multiple entries for S(0) and σ for basket options.<br/>

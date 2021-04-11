@@ -26,6 +26,13 @@ $(document).ready(function(){
         correlation = $("#correlation").val();
     });
     // European options
+    $('#european_call, #european_put').hover(
+        function() {
+            $("#spotprice-label, #volatility-label, #interestrate-label, #reporate-label, #maturity-label, #strikeprice-label").addClass("highlight");
+        }, function() {
+            $(".label").removeClass("highlight");
+        }
+    );
     $('#european_call').click(function() {
         $.ajax({
             url: "/calculate_european_option_value",
@@ -63,6 +70,13 @@ $(document).ready(function(){
         });
     });
     // Implied volatility
+    $('#impliedvol_call, #impliedvol_put').hover(
+        function() {
+            $("#spotprice-label, #volatility-label, #interestrate-label, #reporate-label, #maturity-label, #strikeprice-label, #optionpremium-label").addClass("highlight");
+        }, function() {
+            $(".label").removeClass("highlight");
+        }
+    );
     $('#impliedvol_call').click(function() {
         $.ajax({
             url: "/calculate_implied_vol",
@@ -102,6 +116,13 @@ $(document).ready(function(){
         });
     });
     // American options
+    $('#american_call, #american_put').hover(
+        function() {
+            $("#spotprice-label, #volatility-label, #interestrate-label, #maturity-label, #strikeprice-label, #observations-label").addClass("highlight");
+        }, function() {
+            $(".label").removeClass("highlight");
+        }
+    );
     $('#american_call').click(function() {
         $.ajax({
             url: "/calculate_american_option_value",
@@ -139,6 +160,13 @@ $(document).ready(function(){
         });
     });
     // Asian options
+    $('#geo_asian_closed_form_call, #geo_asian_closed_form_put, #geo_asian_mc_call, #geo_asian_mc_put, #arithm_asian_mc_call, #arithm_asian_mc_put, #arithm_asian_cv_call, #arithm_asian_cv_put').hover(
+        function() {
+            $("#spotprice-label, #volatility-label, #interestrate-label, #maturity-label, #strikeprice-label, #observations-label, #montecarlopath-label").addClass("highlight");
+        }, function() {
+            $(".label").removeClass("highlight");
+        }
+    );
     $('#geo_asian_closed_form_call').click(function() {
         $.ajax({
             url: "/calculate_asian_option_value",
@@ -300,6 +328,13 @@ $(document).ready(function(){
         });
     });
     // Basket options
+    $('#geo_basket_call, #geo_basket_put, #arithm_basket_mc_call, #arithm_basket_mc_put, #arithm_basket_cv_call, #arithm_basket_cv_put').hover(
+        function() {
+            $("#spotprice-label, #volatility-label, #interestrate-label, #maturity-label, #strikeprice-label, #montecarlopath-label, #correlation-label").addClass("highlight");
+        }, function() {
+            $(".label").removeClass("highlight");
+        }
+    );
     $('#geo_basket_call').click(function() {
         $.ajax({
             url: "/calculate_basket_option_value",
