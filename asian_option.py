@@ -50,7 +50,10 @@ class AsianOptionCal:
         for i in range(self.M):
             spathArray = self.randomPriceSample()
             spathMean = self.arithmeticMath(spathArray)
-            arithPayoffArray.append(max(spathMean - self.K, 0))
+            if self.option == "Call":
+                arithPayoffArray.append(max(spathMean - self.K, 0))
+            if self.option == "Put":
+                arithPayoffArray.append(max(self.K - spathMean, 0))
             
         return arithPayoffArray
 
@@ -60,7 +63,10 @@ class AsianOptionCal:
         for i in range(sub_M):
             spathArray = self.randomPriceSample()
             spathMean = self.arithmeticMath(spathArray)
-            arithPayoffArray.append(max(spathMean - self.K, 0))
+            if self.option == "Call":
+                arithPayoffArray.append(max(spathMean - self.K, 0))
+            if self.option == "Put":
+                arithPayoffArray.append(max(self.K - spathMean, 0))
 
         arithPayoffArray_main += arithPayoffArray
 
@@ -88,13 +94,20 @@ class AsianOptionCal:
         for i in range(self.M):
             spathArray = self.randomPriceSample()
             spathMean = self.geometricMath(spathArray)
-            geoPayoffArray.append(max(spathMean - self.K, 0))
+            if self.option == "Call":
+                geoPayoffArray.append(max(spathMean - self.K, 0))
+            if self.option == "Put":
+                geoPayoffArray.append(max(self.K - spathMean, 0))
         return geoPayoffArray
     
     def arithmeticStandardMC(self):
         arithPayoffArray = self.arithmeticPayoff()
         vArith = self.discount * self.arithmeticMath(arithPayoffArray)
-        return vArith
+        Pmean = vArith
+        discounted_payoff = np.array(arithPayoffArray)*self.discount
+        Pstd = np.std(discounted_payoff)
+        confmc = [Pmean - 1.96*Pstd/self.M**0.5, Pmean + 1.96*Pstd/self.M**0.5]
+        return vArith, confmc
     
     def geometricStandardMC(self):
         geoPayoffArray = self.geometricPayoff()
@@ -109,4 +122,7 @@ class AsianOptionCal:
         VGeo = self.geometricStandardMC()
         covXY = np.cov(arithPayoffArray,geoPayoffArray)[0][1]
         theta = covXY/np.var(geoPayoffArray)
-        return vArith + theta * (VCgeo - VGeo)
+        Z = np.array(arithPayoffArray) + theta * (VGeo - np.array(geoPayoffArray))
+        Zmean = np.mean(Z)
+        Zstd = np.std(Z)
+        return vArith + theta * (VCgeo - VGeo), [Zmean - 1.96 * Zstd/self.M**0.5, Zmean + 1.96*Zstd/self.M**0.5]
