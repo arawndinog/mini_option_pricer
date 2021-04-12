@@ -50,9 +50,9 @@ class AsianOptionCal:
         for i in range(self.M):
             spathArray = self.randomPriceSample()
             spathMean = self.arithmeticMath(spathArray)
-            if self.option == "Call":
+            if self.option == "call":
                 arithPayoffArray.append(max(spathMean - self.K, 0))
-            if self.option == "Put":
+            if self.option == "put":
                 arithPayoffArray.append(max(self.K - spathMean, 0))
             
         return arithPayoffArray
@@ -63,9 +63,9 @@ class AsianOptionCal:
         for i in range(sub_M):
             spathArray = self.randomPriceSample()
             spathMean = self.arithmeticMath(spathArray)
-            if self.option == "Call":
+            if self.option == "call":
                 arithPayoffArray.append(max(spathMean - self.K, 0))
-            if self.option == "Put":
+            if self.option == "put":
                 arithPayoffArray.append(max(self.K - spathMean, 0))
 
         arithPayoffArray_main += arithPayoffArray
@@ -94,9 +94,9 @@ class AsianOptionCal:
         for i in range(self.M):
             spathArray = self.randomPriceSample()
             spathMean = self.geometricMath(spathArray)
-            if self.option == "Call":
+            if self.option == "call":
                 geoPayoffArray.append(max(spathMean - self.K, 0))
-            if self.option == "Put":
+            if self.option == "put":
                 geoPayoffArray.append(max(self.K - spathMean, 0))
         return geoPayoffArray
     
