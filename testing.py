@@ -1,6 +1,8 @@
 import asian_option
 import basket_option
 
+print("Arithmetic options are in the form (value, (95% confidence interval))")
+
 print("Testing Asian options:")
 print("Testing: sigma=0.3, N=50, K=100, option=put")
 asian_option_model = asian_option.AsianOptionCal(sigma=0.3,N=50,S=100,K=100,T=3,r=0.05,M=100000,option="put")
@@ -39,7 +41,7 @@ print("  Geometric with MC:", asian_option_model.geometricStandardMC())
 print("  Arithmetic with MC:", asian_option_model.arithmeticStandardMC())
 print("  Arithmetic with MC and control variate:", asian_option_model.arithmeticStandardMCWithCV())
 
-print("Testing basket options ( Arithmetic is in the form (value, (95% confidence interval)) ):")
+print("Testing basket options:")
 print("Testing: s0_1=100, s0_2=100, K=100, sigma_1=0.3, sigma_2=0.3, rho=0.5, option=put")
 print("  Geometric:", basket_option.basketGeo(s0_1=100, s0_2=100, K=100, sigma_1=0.3, sigma_2=0.3, r=0.05, T=3, rho=0.5 ,option="put").basketGeoPrice())
 print("  Arithmetic with MC:", basket_option.basketArith(s0_1=100, s0_2=100, K=100, sigma_1=0.3, sigma_2=0.3, r=0.05, T=3, rho=0.5 ,option="put").pricing())
