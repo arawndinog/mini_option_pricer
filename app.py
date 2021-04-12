@@ -61,17 +61,23 @@ def calculate_asian_option_value():
     N = int(request.args.get('observations'))
     M = int(request.args.get('montecarlopath'))
 
+    result = None
+    confmc = None
     asian_option_model = asian_option.AsianOptionCal(sigma=sigma,N=N,S=S,K=K,T=T,r=r,M=M,option=option_type)
     if asian_type == "geo_bs":
         result = asian_option_model.geometricClosedForm()
     elif  asian_type == "geo_mc":
         result = asian_option_model.geometricStandardMC()
     elif asian_type == "arithm_mc":
-        result = asian_option_model.arithmeticStandardMC()
+        results = asian_option_model.arithmeticStandardMC()
+        result = str(float(results[0]))
+        confmc = str([np.around(results[1][0], 5), np.around(results[1][1], 5)])
     elif asian_type == "arithm_cv":
-        result = asian_option_model.arithmeticStandardMCWithCV()
+        results = asian_option_model.arithmeticStandardMCWithCV()
+        result = str(float(results[0]))
+        confmc = str([np.around(results[1][0], 5), np.around(results[1][1], 5)])
 
-    return jsonify({"result":result})
+    return jsonify({"result":result, "confmc":confmc})
 
 @app.route('/calculate_basket_option_value')
 def calculate_basket_option_value():
