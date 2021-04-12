@@ -400,7 +400,7 @@ $(document).ready(function(){
                 optiontype: "call"
             },
             success: function(response) {
-                $("#arithm_basket_mc_call .result").html('<p><span>Result</span> '+response.result.toString()+'</p>');
+                $("#arithm_basket_mc_call .result").html('<span>Result</span> '+response.result.toString()+'<br/><span>95% conf. interval</span> '+response.confmc.toString());
             },
         });
     });
@@ -423,7 +423,7 @@ $(document).ready(function(){
                 optiontype: "put"
             },
             success: function(response) {
-                $("#arithm_basket_mc_put .result").html('<p><span>Result</span> '+response.result.toString()+'</p>');
+                $("#arithm_basket_mc_put .result").html('<span>Result</span> '+response.result.toString()+'<br/><span>95% conf. interval</span> '+response.confmc.toString());
             },
         });
     });
@@ -446,7 +446,7 @@ $(document).ready(function(){
                 optiontype: "call"
             },
             success: function(response) {
-                $("#arithm_basket_cv_call .result").html('<p><span>Result</span> '+response.result.toString()+'</p>');
+                $("#arithm_basket_cv_call .result").html('<span>Result</span> '+response.result.toString()+'<br/><span>95% conf. interval</span> '+response.confmc.toString());
             },
         });
     });
@@ -469,7 +469,7 @@ $(document).ready(function(){
                 optiontype: "put"
             },
             success: function(response) {
-                $("#arithm_basket_cv_put .result").html('<p><span>Result</span> '+response.result.toString()+'</p>');
+                $("#arithm_basket_cv_put .result").html('<span>Result</span> '+response.result.toString()+'<br/><span>95% conf. interval</span> '+response.confmc.toString());
             },
         });
     });

@@ -88,17 +88,22 @@ def calculate_basket_option_value():
     M = int(request.args.get('montecarlopath'))
     basket_type = request.args.get('baskettype')
 
+    result = None
+    confmc = None
     if basket_type == "geo_mc":
         basket_option_model = basket_option.basketGeo(s0_1, s0_2, sigma_1, sigma_2, r, T, K, rho, option_type)
         result = basket_option_model.basketGeoPrice()
     elif basket_type == "arithm_mc":
         basket_option_model = basket_option.basketArith(s0_1, s0_2, sigma_1, sigma_2, r, T, K, rho, option_type, M, False)
-        result = basket_option_model.pricing()[0]
+        results = basket_option_model.pricing()
+        result = str(float(results[0]))
+        confmc = str([np.around(results[1][0][0], 5), np.around(results[1][1][0], 5)])
     elif basket_type == "arithm_cv":
         basket_option_model = basket_option.basketArith(s0_1, s0_2, sigma_1, sigma_2, r, T, K, rho, option_type, M, True)
-        result = float(basket_option_model.pricing()[0])
-
-    return jsonify({"result":result})
+        results = basket_option_model.pricing()
+        result = str(float(results[0]))
+        confmc = str([np.around(results[1][0][0], 5), np.around(results[1][1][0], 5)])
+    return jsonify({"result":result, "confmc":confmc})
 
 if __name__ == "__main__":
     app.run(port=5600, debug = True)

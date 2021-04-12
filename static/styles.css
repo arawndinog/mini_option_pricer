@@ -76,6 +76,10 @@ body {
 .output-panel span.title {
     font-weight: bold;
 }
+.output-panel .result {
+    line-height:25px;
+    margin-top:5px;
+}
 .output-panel .result span {
     background: #303030;
     color: white;
