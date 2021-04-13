@@ -5,15 +5,11 @@ import math
 def black_scholes_d(S, K, T, sigma, r, q, d=1):
     # d1: d=1
     # d2: d=-1
-    if (sigma == 0) or (T == 0):
-        return None
     return (np.log(S/K) + (r-q)*T)/(sigma*np.sqrt(T)) + d * (0.5*sigma*np.sqrt(T))
 
 def option_value(S, K, T, sigma, r, q, option_type):
     d1 = black_scholes_d(S, K, T, sigma, r, q, 1)
     d2 = black_scholes_d(S, K, T, sigma, r, q, -1)
-    if (d1 is None) or (d2 is None):
-        return "Division by 0"
     if option_type == "call":
         option_mul = 1
     elif option_type == "put":
@@ -27,8 +23,6 @@ def vega(S, K, T, sigma, r, q):
     return result
 
 def newtons_method(C_true, S, K, T, r, q, option_type):
-    if (K==0) or (T==0):
-        return "Division by 0"
     sigmahat = np.sqrt(2*abs((np.log(S/K) + (r-q)*T)/T))
     tol = 1e-10; nmax = 1000
     sigmadiff = 1

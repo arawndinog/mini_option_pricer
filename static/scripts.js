@@ -168,6 +168,7 @@ $(document).ready(function(){
         }
     );
     $('#geo_asian_closed_form_call').click(function() {
+        $("#geo_asian_closed_form_call .result").html('<p><span>Loading</span></p>');
         $.ajax({
             url: "/calculate_asian_option_value",
             type: "get",
@@ -188,6 +189,7 @@ $(document).ready(function(){
         });
     });
     $('#geo_asian_closed_form_put').click(function() {
+        $("#geo_asian_closed_form_put .result").html('<p><span>Loading</span></p>');
         $.ajax({
             url: "/calculate_asian_option_value",
             type: "get",
@@ -208,6 +210,7 @@ $(document).ready(function(){
         });
     });
     $('#geo_asian_mc_call').click(function() {
+        $("#geo_asian_mc_call .result").html('<p><span>Loading</span></p>');
         $.ajax({
             url: "/calculate_asian_option_value",
             type: "get",
@@ -228,6 +231,7 @@ $(document).ready(function(){
         });
     });
     $('#geo_asian_mc_put').click(function() {
+        $("#geo_asian_mc_put .result").html('<p><span>Loading</span></p>');
         $.ajax({
             url: "/calculate_asian_option_value",
             type: "get",
@@ -248,6 +252,7 @@ $(document).ready(function(){
         });
     });
     $('#arithm_asian_mc_call').click(function() {
+        $("#arithm_asian_mc_call .result").html('<p><span>Loading</span></p>');
         $.ajax({
             url: "/calculate_asian_option_value",
             type: "get",
@@ -268,6 +273,7 @@ $(document).ready(function(){
         });
     });
     $('#arithm_asian_mc_put').click(function() {
+        $("#arithm_asian_mc_put .result").html('<p><span>Loading</span></p>');
         $.ajax({
             url: "/calculate_asian_option_value",
             type: "get",
@@ -288,6 +294,7 @@ $(document).ready(function(){
         });
     });
     $('#arithm_asian_cv_call').click(function() {
+        $("#arithm_asian_cv_call .result").html('<p><span>Loading</span></p>');
         $.ajax({
             url: "/calculate_asian_option_value",
             type: "get",
@@ -308,6 +315,7 @@ $(document).ready(function(){
         });
     });
     $('#arithm_asian_cv_put').click(function() {
+        $("#arithm_asian_cv_put .result").html('<p><span>Loading</span></p>');
         $.ajax({
             url: "/calculate_asian_option_value",
             type: "get",
@@ -336,6 +344,7 @@ $(document).ready(function(){
         }
     );
     $('#geo_basket_call').click(function() {
+        $("#geo_basket_call .result").html('<p><span>Loading</span></p>');
         $.ajax({
             url: "/calculate_basket_option_value",
             type: "get",
@@ -359,6 +368,7 @@ $(document).ready(function(){
         });
     });
     $('#geo_basket_put').click(function() {
+        $("#geo_basket_put .result").html('<p><span>Loading</span></p>');
         $.ajax({
             url: "/calculate_basket_option_value",
             type: "get",
@@ -382,6 +392,7 @@ $(document).ready(function(){
         });
     });
     $('#arithm_basket_mc_call').click(function() {
+        $("#arithm_basket_mc_call .result").html('<p><span>Loading</span></p>');
         $.ajax({
             url: "/calculate_basket_option_value",
             type: "get",
@@ -405,6 +416,7 @@ $(document).ready(function(){
         });
     });
     $('#arithm_basket_mc_put').click(function() {
+        $("#arithm_basket_mc_put .result").html('<p><span>Loading</span></p>');
         $.ajax({
             url: "/calculate_basket_option_value",
             type: "get",
@@ -428,6 +440,7 @@ $(document).ready(function(){
         });
     });
     $('#arithm_basket_cv_call').click(function() {
+        $("#arithm_basket_cv_call .result").html('<p><span>Loading</span></p>');
         $.ajax({
             url: "/calculate_basket_option_value",
             type: "get",
@@ -451,6 +464,7 @@ $(document).ready(function(){
         });
     });
     $('#arithm_basket_cv_put').click(function() {
+        $("#arithm_basket_cv_put .result").html('<p><span>Loading</span></p>');
         $.ajax({
             url: "/calculate_basket_option_value",
             type: "get",

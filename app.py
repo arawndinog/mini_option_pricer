@@ -20,7 +20,10 @@ def calculate_european_option_value():
     T = float(request.args.get('maturity'))
     K = float(request.args.get('strikeprice'))
     option_type = request.args.get('optiontype')
-    result = black_scholes.option_value(S, K, T, sigma, r, q, option_type)
+    try:
+        result = black_scholes.option_value(S, K, T, sigma, r, q, option_type)
+    except Exception as e:
+        return jsonify({"result":str(e)})
     return jsonify({"result":result})
 
 @app.route('/calculate_implied_vol')
@@ -33,7 +36,10 @@ def calculate_implied_vol():
     K = float(request.args.get('strikeprice'))
     C_true = float(request.args.get('optionpremium'))
     option_type = request.args.get('optiontype')
-    result = black_scholes.newtons_method(C_true, S, K, T, r, q, option_type)
+    try:
+        result = black_scholes.newtons_method(C_true, S, K, T, r, q, option_type)
+    except Exception as e:
+        return jsonify({"result":str(e)})
     return jsonify({"result":result})
 
 @app.route('/calculate_american_option_value')
@@ -45,7 +51,10 @@ def calculate_american_option_value():
     K = float(request.args.get('strikeprice'))
     N = int(request.args.get('observations'))
     option_type = request.args.get('optiontype')
-    result = american_option.binomial_tree(S, K, T, sigma, r, N, option_type)
+    try:
+        result = american_option.binomial_tree(S, K, T, sigma, r, N, option_type)
+    except Exception as e:
+        return jsonify({"result":str(e)})
     return jsonify({"result":result})
 
 @app.route('/calculate_asian_option_value')
@@ -63,19 +72,22 @@ def calculate_asian_option_value():
 
     result = None
     confmc = None
-    asian_option_model = asian_option.AsianOptionCal(sigma=sigma,N=N,S=S,K=K,T=T,r=r,M=M,option=option_type)
-    if asian_type == "geo_bs":
-        result = asian_option_model.geometricClosedForm()
-    elif  asian_type == "geo_mc":
-        result = asian_option_model.geometricStandardMC()
-    elif asian_type == "arithm_mc":
-        results = asian_option_model.arithmeticStandardMC()
-        result = str(float(results[0]))
-        confmc = str([np.around(results[1][0], 5), np.around(results[1][1], 5)])
-    elif asian_type == "arithm_cv":
-        results = asian_option_model.arithmeticStandardMCWithCV()
-        result = str(float(results[0]))
-        confmc = str([np.around(results[1][0], 5), np.around(results[1][1], 5)])
+    try:
+        asian_option_model = asian_option.AsianOptionCal(sigma=sigma,N=N,S=S,K=K,T=T,r=r,M=M,option=option_type)
+        if asian_type == "geo_bs":
+            result = asian_option_model.geometricClosedForm()
+        elif  asian_type == "geo_mc":
+            result = asian_option_model.geometricStandardMC()
+        elif asian_type == "arithm_mc":
+            results = asian_option_model.arithmeticStandardMC()
+            result = str(float(results[0]))
+            confmc = str([np.around(results[1][0], 5), np.around(results[1][1], 5)])
+        elif asian_type == "arithm_cv":
+            results = asian_option_model.arithmeticStandardMCWithCV()
+            result = str(float(results[0]))
+            confmc = str([np.around(results[1][0], 5), np.around(results[1][1], 5)])
+    except Exception as e:
+        return jsonify({"result":str(e)})
 
     return jsonify({"result":result, "confmc":confmc})
 
@@ -96,19 +108,23 @@ def calculate_basket_option_value():
 
     result = None
     confmc = None
-    if basket_type == "geo_mc":
-        basket_option_model = basket_option.basketGeo(s0_1, s0_2, sigma_1, sigma_2, r, T, K, rho, option_type)
-        result = basket_option_model.basketGeoPrice()
-    elif basket_type == "arithm_mc":
-        basket_option_model = basket_option.basketArith(s0_1, s0_2, sigma_1, sigma_2, r, T, K, rho, option_type, M, False)
-        results = basket_option_model.pricing()
-        result = str(float(results[0]))
-        confmc = str([np.around(results[1][0][0], 5), np.around(results[1][1][0], 5)])
-    elif basket_type == "arithm_cv":
-        basket_option_model = basket_option.basketArith(s0_1, s0_2, sigma_1, sigma_2, r, T, K, rho, option_type, M, True)
-        results = basket_option_model.pricing()
-        result = str(float(results[0]))
-        confmc = str([np.around(results[1][0][0], 5), np.around(results[1][1][0], 5)])
+    try:
+        if basket_type == "geo_mc":
+            basket_option_model = basket_option.basketGeo(s0_1, s0_2, sigma_1, sigma_2, r, T, K, rho, option_type)
+            result = basket_option_model.basketGeoPrice()
+        elif basket_type == "arithm_mc":
+            basket_option_model = basket_option.basketArith(s0_1, s0_2, sigma_1, sigma_2, r, T, K, rho, option_type, M, False)
+            results = basket_option_model.pricing()
+            result = str(float(results[0]))
+            confmc = str([np.around(results[1][0][0], 5), np.around(results[1][1][0], 5)])
+        elif basket_type == "arithm_cv":
+            basket_option_model = basket_option.basketArith(s0_1, s0_2, sigma_1, sigma_2, r, T, K, rho, option_type, M, True)
+            results = basket_option_model.pricing()
+            result = str(float(results[0]))
+            confmc = str([np.around(results[1][0][0], 5), np.around(results[1][1][0], 5)])
+    except Exception as e:
+        return jsonify({"result":str(e)})
+
     return jsonify({"result":result, "confmc":confmc})
 
 if __name__ == "__main__":
